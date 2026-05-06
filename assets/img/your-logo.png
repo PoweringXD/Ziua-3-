@@ -1,0 +1,13 @@
+.logo img {
+  width: 370px;
+  height: 370px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
