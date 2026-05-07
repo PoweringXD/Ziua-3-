@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoala de Limbi Straine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --accent: #c8a96e;
+      --accent-light: #e8d5b0;
+      --white: #ffffff;
+      --off-white: #f9f6f1;
+      --text: #2d2d2d;
+      --text-light: #6b6b6b;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+      padding: 0 5%;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: var(--white);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--primary) !important;
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 30px;
+      transition: var(--transition) !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent) !important;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta::after { display: none !important; }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--primary) 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(200,169,110,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(200,169,110,0.08) 0%, transparent 50%);
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-particles span {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particle-float 6s ease-in-out infinite;
+    }
+
+    .hero-particles span:nth-child(1)  { top: 20%; left: 10%; animation-delay: 0s; }
+    .hero-particles span:nth-child(2)  { top: 60%; left: 80%; animation-delay: 1s; }
+    .hero-particles span:nth-child(3)  { top: 40%; left: 30%; animation-delay: 2s; }
+    .hero-particles span:nth-child(4)  { top: 80%; left: 60%; animation-delay: 0.5s; }
+    .hero-particles span:nth-child(5)  { top: 10%; left: 70%; animation-delay: 3s; }
+    .hero-particles span:nth-child(6)  { top: 70%; left: 20%; animation-delay: 1.5s; }
+
+    @keyframes particle-float {
+      0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+      50% { opacity: 1; transform: translateY(-30px) scale(3); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: hero-fade-up 1s ease both;
+    }
+
+    @keyframes hero-fade-up {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(200,169,110,0.3), rgba(200,169,110,0.1));
+      border: 2px solid rgba(200,169,110,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(200,169,110,0.3); }
+      50% { box-shadow: 0 0 0 20px rgba(200,169,110,0); }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 42px;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 8px 30px rgba(200,169,110,0.35);
+    }
+
+    .btn:hover {
+      background: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(200,169,110,0.4);
+    }
+
+    .services {
+      padding: 7rem 5%;
+      background: var(--off-white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-light);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-6px);
+    }
+
+    .card:hover::before { transform: scaleX(1); }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #16213e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(200,169,110,0.12);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .mission {
+      padding: 7rem 5%;
+      background: var(--white);
+    }
+
+    .mission-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    .mission-image {
+      order: 1;
+      flex: 1;
+      position: relative;
+    }
+
+    .mission-text {
+      order: 2;
+      flex: 1;
+    }
+
+    .mission-img-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      background: linear-gradient(160deg, var(--primary), #0f3460);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 24px 60px rgba(26,26,46,0.25);
+    }
+
+    .mission-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 70%, rgba(200,169,110,0.2) 0%, transparent 60%);
+    }
+
+    .mission-img-illustration {
+      font-size: 6rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+      animation: float-bob 4s ease-in-out infinite;
+    }
+
+    @keyframes float-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .mission-badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 100px;
+      height: 100px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      box-shadow: 0 8px 30px rgba(200,169,110,0.4);
+    }
+
+    .mission-badge .num { font-size: 1.8rem; color: var(--primary); line-height: 1; }
+    .mission-badge .lbl { font-size: 0.6rem; letter-spacing: 0.05em; color: var(--primary); text-align: center; line-height: 1.2; }
+
+    .mission-text .section-label { margin-bottom: 0.75rem; }
+
+    .mission-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .mission-text p {
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .mission-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary);
+    }
+
+    .stat span {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 0.85rem;
+    }
+
+    footer strong { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .mission-inner {
+        flex-direction: column;
+        gap: 2.5rem;
+      }
+
+      .mission-badge {
+        width: 75px;
+        height: 75px;
+        bottom: -10px;
+        right: -10px;
+      }
+
+      .mission-badge .num { font-size: 1.4rem; }
+
+      .mission-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-circle">S</div>
+        <span>Scoala de Limbi<br>Straine</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#servicii">Servicii</a></li>
+        <li><a href="#misiune">Misiune</a></li>
+        <li><a href="#cursuri">Cursuri</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Înscrie-te</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-particles">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div class="hero-content">
+      <div class="logo-circle">S</div>
+      <h1>Scoala de<br><em>Limbi Straine</em></h1>
+      <p>Creați viitorul cu noi</p>
+      <a href="#servicii" class="btn">Începe</a>
+    </div>
+  </section>
+
+  <section class="services" id="servicii">
+    <div class="section-header">
+      <span class="section-label">Ce oferim</span>
+      <h2>Cursurile Noastre</h2>
+      <p>Descoperă o gamă completă de cursuri adaptate nevoilor tale de comunicare globală.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="card">
+        <div class="card-icon">🇬🇧</div>
+        <h3>Engleză</h3>
+        <p>De la A1 la C2, cursuri intensive și standard pentru toate vârstele și nivelurile.</p>
+        <span class="card-tag">Cel mai popular</span>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🇫🇷</div>
+        <h3>Franceză</h3>
+        <p>Explorează limba lui Molière cu profesori nativi și metode moderne de predare.</p>
+        <span class="card-tag">Disponibil</span>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🇩🇪</div>
+        <h3>Germană</h3>
+        <p>Pregătire pentru examene oficiale Goethe-Institut și cursuri de afaceri.</p>
+        <span class="card-tag">Business</span>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🇪🇸</div>
+        <h3>Spaniolă</h3>
+        <p>Vorbită de peste 500 de milioane de oameni — înveți rapid cu metoda noastră conversațională.</p>
+        <span class="card-tag">Nou</span>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🇮🇹</div>
+        <h3>Italiană</h3>
+        <p>Limbă melodică pentru cultură, călătorii și afaceri în Peninsula Italică.</p>
+        <span class="card-tag">Disponibil</span>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Curs Online</h3>
+        <p>Platforma noastră digitală îți permite să înveți orice limbă de oriunde din lume.</p>
+        <span class="card-tag">Flexibil</span>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="mission" id="misiune">
+    <div class="mission-inner">
+
+      <div class="mission-image">
+        <div class="mission-img-wrap">
+          <div class="mission-img-illustration">🎓</div>
+        </div>
+        <div class="mission-badge">
+          <span class="num">10+</span>
+          <span class="lbl">Ani de experiență</span>
+        </div>
+      </div>
+
+      <div class="mission-text">
+        <span class="section-label">Misiunea noastră</span>
+        <h2>Construim punți între culturi și oameni</h2>
+        <p>Credem că fiecare persoană merită acces la educație lingvistică de calitate. Metodele noastre combină cele mai recente cercetări pedagogice cu pasiunea pentru comunicare autentică.</p>
+        <p>Cu profesori certificați și un mediu de învățare stimulant, transformăm studiul limbilor dintr-o obligație într-o aventură.</p>
+        <div class="mission-stats">
+          <div class="stat">
+            <strong>2,400+</strong>
+            <span>Absolvenți</span>
+          </div>
+          <div class="stat">
+            <strong>12</strong>
+            <span>Limbi predate</span>
+          </div>
+          <div class="stat">
+            <strong>98%</strong>
+            <span>Satisfacție</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>© 2025 <strong>Scoala de Limbi Straine</strong> — Creați viitorul cu noi.</p>
+  </footer>
+
+</body>
+</html>
