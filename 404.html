@@ -1,0 +1,39 @@
+<!-- Live Deployment & Security Headers Configured by: Cealic Damian | RC 251 | Data: 15.05.2026 -->
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Pagina nu a fost găsită | RC 251</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #080808;
+      color: #ffffff;
+      font-family: 'Share Tech Mono', monospace, sans-serif;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .code { font-size: clamp(5rem, 20vw, 10rem); font-weight: 700; color: #00f2ff; line-height: 1; text-shadow: 0 0 40px rgba(0,242,255,0.4); }
+    .message { font-size: 1rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); margin: 1.5rem 0 2.5rem; text-transform: uppercase; }
+    .back {
+      display: inline-block; padding: 12px 32px;
+      border: 1px solid rgba(0,242,255,0.4); border-radius: 8px;
+      color: #00f2ff; text-decoration: none; letter-spacing: 0.1em;
+      font-size: 0.85rem; text-transform: uppercase;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .back:hover { background: rgba(0,242,255,0.1); border-color: #00f2ff; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="code">404</div>
+    <p class="message">Pagina nu a fost găsită</p>
+    <a class="back" href="/">← Înapoi acasă</a>
+  </div>
+</body>
+</html>

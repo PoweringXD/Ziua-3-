@@ -1,0 +1,411 @@
+/* ============================================================
+   _molecules.css | RC 251 — Cealic Damian
+   Componente: field, services, terms, btn
+   CRITERIU: Fără ID-uri. Fără selectoare > 2 niveluri.
+   GPU: Animații exclusiv prin transform/opacity — zero reflow.
+   ============================================================ */
+
+
+/* ── BLOCK: field ────────────────────────────────────────── */
+
+.field {
+  position: relative;
+  /*
+    LAYOUT SHIFT FIX:
+    Spațiu rezervat pentru .field__hint de la start.
+    Fără rezervare, apariția hint-ului împinge elementele → CLS.
+    Cu padding-bottom fix, înălțimea nu se schimbă niciodată.
+  */
+  padding-bottom: calc(var(--field-hint-height) + var(--space-2));
+  margin-bottom: var(--space-4);
+}
+
+.field__input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-6) var(--primitive-space-40) var(--space-6) var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--text-input);
+  color: var(--color-text-primary);
+  outline: none;
+  /*
+    PERFORMANȚĂ: animăm doar border-color și box-shadow.
+    NU animăm width/height/padding — ar cauza Layout + Paint.
+  */
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  letter-spacing: var(--tracking-tight);
+}
+
+.field__input::placeholder {
+  color: transparent; /* label înlocuiește placeholder-ul */
+}
+
+/*
+  FLOATING LABEL — GPU optimizat
+  ÎNAINTE (Layout Thrashing): top: 50% → top: 0 + font-size animat
+                              → triggera Layout + Paint la fiecare frame
+  ACUM (compositor thread):   transform: translateY + scale
+                              → zero reflow, zero repaint
+*/
+.field__label {
+  position: absolute;
+  left: var(--space-6);
+  top: calc(var(--space-6) + var(--text-base));
+  transform: translateY(-50%);
+  transform-origin: left center;
+  font-size: var(--text-base);
+  letter-spacing: var(--tracking-normal);
+  color: var(--field-label-color);
+  pointer-events: none;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+  padding: 0 4px;
+  background: transparent;
+  will-change: transform; /* hint GPU: promovează pe layer propriu */
+}
+
+/* Dot indicator — centrat cu transform, nu margin-top */
+.field__dot {
+  position: absolute;
+  right: var(--space-6);
+  top: calc(var(--space-6) + var(--text-base));
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+  pointer-events: none;
+}
+
+/*
+  HINT — zero Layout Shift
+  position: absolute + height fix → nu ocupă flux normal → nu împinge nimic.
+  opacity: 0/1 animat pe compositor → zero reflow.
+  NU folosim display:none/block (triggera reflow) sau color (triggera Paint).
+*/
+.field__hint {
+  position: absolute;
+  bottom: 0;
+  left: var(--space-6);
+  height: var(--field-hint-height);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-normal);
+  color: var(--primitive-red-55);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  will-change: opacity;
+}
+
+
+/* ── State: focus ── */
+
+.field__input:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 2px var(--color-ring-focus), inset 0 0 20px rgba(0,242,255,0.03);
+}
+
+/* max 2 niveluri — (0,2,0) — OK */
+.field:focus-within .field__dot {
+  background: var(--color-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Float label: transform în loc de top animate — GPU */
+.field__input:focus + .field__label,
+.field__input:not(:placeholder-shown) + .field__label {
+  transform: translateY(-160%) scale(0.78);
+  color: var(--field-label-floated-color);
+  background: var(--color-bg);
+}
+
+
+/* ── State: valid ── */
+
+.field__input:valid:not(:placeholder-shown) {
+  border-color: var(--color-border-success);
+  box-shadow: 0 0 0 2px var(--color-ring-success);
+}
+
+.field__input:valid:not(:placeholder-shown) + .field__label {
+  color: var(--color-success);
+}
+
+.field:has(.field__input:valid:not(:placeholder-shown)) .field__dot {
+  background: var(--color-success);
+  box-shadow: var(--shadow-success);
+}
+
+
+/* ── State: invalid ── */
+
+.field__input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-border-error);
+  box-shadow: 0 0 0 2px var(--color-ring-error);
+}
+
+.field__input:invalid:not(:placeholder-shown) + .field__label {
+  color: var(--color-error);
+}
+
+.field:has(.field__input:invalid:not(:placeholder-shown)) .field__dot {
+  background: var(--color-error);
+  box-shadow: var(--shadow-error);
+}
+
+/*
+  CRITERIU: Eroarea apare VIZUAL înainte de submit.
+  opacity devine 1 imediat la :invalid:not(:placeholder-shown).
+  Utilizatorul vede eroarea în timp real, fără să apese Submit.
+*/
+.field:has(.field__input:invalid:not(:placeholder-shown)) .field__hint {
+  opacity: 1;
+}
+
+
+/* ── BLOCK: services (Empty State cu :empty) ─────────────── */
+
+.services {
+  margin-bottom: var(--space-8);
+}
+
+.services__label {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+
+.services__list {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  min-height: 36px; /* rezervă înălțime → previne CLS la adăugarea primului tag */
+  border: 1px dashed var(--services-empty-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  position: relative;
+  transition: border-color var(--transition-fast);
+}
+
+/*
+  :empty — mesaj automat când containerul nu are copii.
+  Dispare singur când adaugi elemente — zero JS.
+  Centrat cu transform, nu cu top/left absolute animate.
+*/
+.services__list:empty::before {
+  content: 'NICIUN SERVICIU SELECTAT';
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: rgba(255,255,255,0.18);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.services__list:not(:empty) {
+  border-color: var(--services-filled-border);
+}
+
+.services__tag {
+  background: var(--primitive-cyan-08);
+  border: 1px solid rgba(0,242,255,0.20);
+  border-radius: var(--radius-xs);
+  padding: var(--space-1) var(--primitive-space-10);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-focus);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  will-change: transform;
+  user-select: none;
+}
+
+/* hover cu transform scale — nu background animate (triggera Paint) */
+.services__tag:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+.services__controls {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.services__btn {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-normal);
+  color: rgba(0,242,255,0.50);
+  background: transparent;
+  border: 1px solid rgba(0,242,255,0.15);
+  border-radius: var(--radius-xs);
+  padding: var(--space-1) var(--primitive-space-10);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.services__btn:hover {
+  color: var(--color-focus);
+  border-color: rgba(0,242,255,0.40);
+}
+
+
+/* ── BLOCK: terms (Checkbox — Complex Selector Puzzle) ────── */
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-space-10);
+  margin-bottom: var(--space-7);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Checkbox nativ ascuns — stilizăm .terms__box în loc */
+.terms__checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.terms__box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--primitive-white-20);
+  border-radius: 3px;
+  background: var(--color-surface);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.terms__box::after {
+  content: '';
+  width: 8px;
+  height: 5px;
+  border-left: 1.5px solid var(--color-success);
+  border-bottom: 1.5px solid var(--color-success);
+  /* GPU: transform scale în loc de display:none → zero reflow */
+  transform: rotate(-45deg) scale(0);
+  transition: transform var(--transition-fast);
+  will-change: transform;
+}
+
+/* max 2 niveluri — (0,2,0) — OK */
+.terms__checkbox:checked + .terms__box {
+  border-color: var(--color-success);
+  background: var(--primitive-green-10);
+}
+
+.terms__checkbox:checked + .terms__box::after {
+  transform: rotate(-45deg) scale(1);
+}
+
+.terms__text {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-normal);
+  color: var(--primitive-white-35);
+}
+
+.terms__link {
+  color: rgba(0,242,255,0.60);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,242,255,0.20);
+}
+
+
+/* ── BLOCK: btn (The Gatekeeper) ─────────────────────────── */
+
+.btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primitive-white-10);
+  font-family: var(--font-heading);
+  font-size: var(--text-btn);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  cursor: not-allowed;
+  background: var(--btn-disabled-bg);
+  color: var(--btn-disabled-text);
+  pointer-events: none;
+  transition:
+    background     var(--transition-med),
+    border-color   var(--transition-med),
+    color          var(--transition-med),
+    box-shadow     var(--transition-med);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer — pe compositor thread (translateX) */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: translateX(-100%);
+  will-change: transform;
+}
+
+/*
+  STARE 1: câmpuri valide → buton cyan activ
+  Selector pe clase — fără ID-uri — max 2 niveluri — OK
+*/
+.form:has(.field__input:required:valid:not(:placeholder-shown) ~ .field__label) .btn {
+  cursor: pointer;
+  pointer-events: all;
+  background: var(--btn-active-bg);
+  border-color: var(--btn-active-border);
+  color: var(--color-text-primary);
+  text-shadow: 0 0 10px rgba(0,242,255,0.50);
+  animation: pulse-cyan 2s infinite;
+}
+
+.form:has(.field__input:required:valid:not(:placeholder-shown) ~ .field__label) .btn::before {
+  animation: shimmer 2.5s infinite;
+}
+
+/*
+  STARE 2 — Complex Selector Puzzle
+  Butonul devine AMBER când:
+    1. Toate câmpurile :required sunt :valid
+    2. .terms__checkbox este :checked
+  Ambele condiții simultan — CSS pur, zero JS, zero ID-uri.
+*/
+.form:has(.terms__checkbox:checked):has(.field__input:required:valid:not(:placeholder-shown) ~ .field__label) .btn {
+  background: var(--btn-terms-bg);
+  border-color: var(--btn-terms-border);
+  text-shadow: 0 0 10px var(--primitive-amber-60);
+  animation: pulse-amber 2s infinite;
+}
+
+
+/* ── Animații ─────────────────────────────────────────────── */
+
+@keyframes pulse-cyan {
+  0%, 100% { box-shadow: 0 0 15px rgba(0,242,255,0.15), 0 0 0 0   rgba(0,242,255,0.30); }
+  50%       { box-shadow: 0 0 30px rgba(0,242,255,0.25), 0 0 0 8px rgba(0,242,255,0.00); }
+}
+
+@keyframes pulse-amber {
+  0%, 100% { box-shadow: 0 0 15px rgba(255,170,0,0.20), 0 0 0 0   rgba(255,170,0,0.35); }
+  50%       { box-shadow: 0 0 30px rgba(255,170,0,0.35), 0 0 0 8px rgba(255,170,0,0.00); }
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

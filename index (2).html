@@ -1,0 +1,1239 @@
+<!-- Asset Optimization: WebP + Lazy Loading implemented by Cealic Damian -->
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Inginerie Web Expert | Portofoliu RC 251 Cealic Damian</title>
+  <meta name="description" content="Explorați proiectele de inginerie UI realizate de Cealic Damian. Focus pe performanță, SEO semantic și arhitecturi CSS moderne de nivel expert.">
+  <meta name="keywords" content="web, CSS, HTML, portofoliu, RC251, inginerie, UI, front-end">
+  <meta name="author" content="Cealic Damian">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://domeniu-elev.ro/index.html">
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Arhitectură Web de Înaltă Performanță">
+  <meta property="og:description" content="Sisteme UI scalabile și optimizate SEO — Cealic Damian, RC 251.">
+  <meta property="og:image"       content="assets/img/preview-site.jpg">
+  <meta property="og:url"         content="https://domeniu-elev.ro/index.html">
+  <meta property="og:locale"      content="ro_RO">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Arhitectură Web de Înaltă Performanță">
+  <meta name="twitter:description" content="Sisteme UI scalabile și optimizate SEO.">
+  <meta name="twitter:image"       content="assets/img/preview-site.jpg">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="theme-color" content="#1a1a2e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --accent: #c8a96e;
+      --accent-light: #e8d5b0;
+      --white: #ffffff;
+      --off-white: #f9f6f1;
+      --text: #2d2d2d;
+      --text-light: #6b6b6b;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .mission-headline {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; color: var(--primary);
+      line-height: 1.3; margin-bottom: 1rem;
+    }
+
+    .menu-btn {
+      display: none; flex-direction: column;
+      justify-content: center; align-items: center; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 6px; transition: background 0.2s;
+    }
+    .menu-btn:hover { background: rgba(0,0,0,0.06); }
+    .menu-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .icon-bar { display: block; width: 22px; height: 2px; background: var(--primary); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .menu-btn[aria-expanded="true"] .icon-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-btn[aria-expanded="true"] .icon-bar:nth-child(2) { opacity: 0; }
+    .menu-btn[aria-expanded="true"] .icon-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .menu-btn { display: flex; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0;
+        background: white; flex-direction: column; padding: 1rem 2rem; gap: 1rem;
+        border-bottom: 1px solid rgba(200,169,110,0.3); z-index: 999; }
+      .nav-links.open { display: flex; }
+    }
+
+    .team-section { padding: 5rem 5%; background: var(--white); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; max-width: 1100px; margin: 0 auto;
+    }
+
+    .teacher-card {
+      background: var(--off-white); border-radius: var(--radius);
+      overflow: hidden; text-align: center;
+      box-shadow: var(--shadow); transition: var(--transition);
+    }
+    .teacher-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+
+    .teacher-photo {
+      width: 100%; height: auto; aspect-ratio: 1 / 1;
+      object-fit: cover; display: block;
+      background: linear-gradient(135deg, var(--accent-light), var(--off-white));
+      min-height: 200px;
+    }
+    .teacher-card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 1rem 1rem 0.25rem; }
+    .teacher-card p  { font-size: 0.85rem; color: var(--text-light); margin: 0 1rem 1rem; }
+
+    .social-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(200,169,110,0.4);
+      color: var(--accent); font-size: 1.1rem;
+      text-decoration: none; transition: var(--transition);
+    }
+    .social-link:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+    .social-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: var(--accent); color: var(--primary);
+      padding: 0.5rem 1rem; border-radius: 0 0 var(--radius) var(--radius);
+      font-weight: 700; font-size: 0.85rem; text-decoration: none;
+      z-index: 9999; transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 0; }
+
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      color: var(--text); background: var(--off-white); overflow-x: hidden;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      background-color: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(200,169,110,0.2);
+      padding: 0 5%;
+      transition: background-color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; max-width: 1280px; margin: 0 auto; }
+
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+    .nav-logo-circle {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      display: flex; align-items: center; justify-content: center;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 900; color: var(--white); font-size: 18px; flex-shrink: 0;
+    }
+
+    .nav-logo span { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1rem; color: var(--primary); line-height: 1.2; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-light); font-size: 0.9rem;
+      font-weight: 500; letter-spacing: 0.03em;
+      transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      border-radius: 2px;
+      transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta { background: var(--primary) !important; color: var(--white) !important; padding: 8px 20px; border-radius: 30px; transition: var(--transition) !important; }
+    .nav-cta:hover { background: var(--accent) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--primary) 0%, #16213e 50%, #0f3460 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 5rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(200,169,110,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(200,169,110,0.08) 0%, transparent 50%);
+    }
+    .hero-particles { position: absolute; inset: 0; overflow: hidden; }
+    .hero-particles span { position: absolute; width: 2px; height: 2px; background: var(--accent); border-radius: 50%; opacity: 0; animation: particle-float 6s ease-in-out infinite; }
+    .hero-particles span:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .hero-particles span:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+    .hero-particles span:nth-child(3) { top: 40%; left: 30%; animation-delay: 2s; }
+    .hero-particles span:nth-child(4) { top: 80%; left: 60%; animation-delay: 0.5s; }
+    .hero-particles span:nth-child(5) { top: 10%; left: 70%; animation-delay: 3s; }
+    .hero-particles span:nth-child(6) { top: 70%; left: 20%; animation-delay: 1.5s; }
+    @keyframes particle-float {
+      0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+      50% { opacity: 1; transform: translateY(-30px) scale(3); }
+    }
+    .hero-content { position: relative; z-index: 1; animation: hero-fade-up 1s ease both; }
+    @keyframes hero-fade-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+    .logo-circle {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(200,169,110,0.3), rgba(200,169,110,0.1));
+      border: 2px solid rgba(200,169,110,0.5);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 3rem; font-weight: 900; color: var(--accent);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(200,169,110,0.3); }
+      50% { box-shadow: 0 0 0 20px rgba(200,169,110,0); }
+    }
+
+    .hero h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.65); font-weight: 300; margin-bottom: 2.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .site-btn {
+      display: inline-block; padding: 14px 42px; background: var(--accent);
+      color: var(--primary); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-weight: 700; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase;
+      border: none; border-radius: 40px; cursor: pointer; text-decoration: none;
+      transition: var(--transition); box-shadow: 0 8px 30px rgba(200,169,110,0.35);
+    }
+    .site-btn:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(200,169,110,0.4); }
+
+    section.services { padding: 7rem 5%; background: var(--off-white); }
+
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .section-header h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
+    .section-header p { color: var(--text-light); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    .services-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; max-width: 1280px; margin: 0 auto; }
+    .services-grid .card { flex: 1 1 calc(33.333% - 1rem); min-width: 280px; }
+    @media (max-width: 600px) { .services-grid .card { flex: 1 1 100%; } }
+
+    .card {
+      background: var(--white); border-radius: var(--radius); padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .card:hover::before { transform: scaleX(1); }
+
+    .card-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #16213e);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; font-size: 1.5rem;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .card:hover .card-icon { transform: scale(1.15) rotate(-4deg); }
+    .card h3 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.6rem; }
+    .card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.2rem; }
+    .card-tag { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(200,169,110,0.12); padding: 4px 10px; border-radius: 20px; }
+
+    .mission { padding: 7rem 5%; background: var(--white); }
+    .mission-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 5rem; }
+    .mission-image { order: 1; flex: 1; position: relative; }
+    .mission-text { order: 2; flex: 1; }
+    .mission-img-wrap { border-radius: 20px; overflow: visible; position: relative; aspect-ratio: 4/3; background: var(--off-white); box-shadow: 0 24px 60px rgba(26,26,46,0.25); }
+    .mission-img-wrap picture { display: block; width: 100%; height: 100%; border-radius: 20px; overflow: hidden; }
+    .mission-img-wrap::before { display: none; }
+    .mission-img-illustration { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .mission-badge {
+      position: absolute; bottom: -16px; right: -16px;
+      width: 100px; height: 100px; background: var(--accent); border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: Georgia, 'Times New Roman', serif; font-weight: 900;
+      box-shadow: 0 8px 30px rgba(200,169,110,0.4); z-index: 2;
+    }
+    .mission-badge .num { font-size: 1.8rem; color: var(--primary); line-height: 1; }
+    .mission-badge .lbl { font-size: 0.6rem; letter-spacing: 0.05em; color: var(--primary); text-align: center; line-height: 1.2; }
+    .mission-text .section-label { margin-bottom: 0.75rem; }
+    .mission-text h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--primary); margin-bottom: 1.25rem; line-height: 1.2; }
+    .mission-text p { color: var(--text-light); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+    .mission-stats { display: flex; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
+    .stat strong { display: block; font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; font-weight: 900; color: var(--primary); }
+    .stat span { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    footer { background: var(--primary); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem; font-size: 0.85rem; }
+    footer strong { color: var(--accent); }
+
+    .contact-section { padding: 7rem 5%; background: var(--off-white); }
+    .contact-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+    .contact-form-card { background: var(--white); border-radius: var(--radius); padding: 2.5rem; box-shadow: var(--shadow); }
+
+    fieldset { border: 1px solid rgba(200,169,110,0.25); border-radius: 10px; padding: 1.4rem 1.2rem 1rem; margin-bottom: 1.2rem; }
+    fieldset:last-of-type { margin-bottom: 0; }
+    legend { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 0 0.5rem; }
+
+    .c-field { position: relative; margin-bottom: 1.3rem; }
+    .c-field:last-child { margin-bottom: 0; }
+    .c-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .c-field input[type="text"],
+    .c-field input[type="email"],
+    .c-field input[type="tel"],
+    .c-field select,
+    .c-field textarea {
+      width: 100%; padding: 1.35rem 0.9rem 0.4rem;
+      border: 1.5px solid #e0e0e0; border-radius: 8px;
+      font-size: 0.9rem; font-family: inherit;
+      background: var(--white); color: var(--text);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .c-field input:focus, .c-field select:focus, .c-field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,169,110,0.15); }
+    .c-field input:valid:not(:placeholder-shown), .c-field textarea:valid:not(:placeholder-shown) { border-color: #38a169; }
+    .c-field input:invalid:not(:placeholder-shown):not(:focus), .c-field textarea:invalid:not(:placeholder-shown):not(:focus) { border-color: #e53e3e; }
+
+    .c-field label { position: absolute; top: 50%; left: 0.9rem; transform: translateY(-50%); font-size: 0.88rem; color: #aaa; pointer-events: none; transition: top 0.2s, font-size 0.2s, color 0.2s; background: var(--white); padding: 0 3px; }
+    .c-field.textarea-field label { top: 1.1rem; transform: none; }
+    .c-field input:focus + label, .c-field input:not(:placeholder-shown) + label,
+    .c-field select:focus + label, .c-field select.has-value + label,
+    .c-field textarea:focus + label, .c-field textarea:not(:placeholder-shown) + label { top: 0; font-size: 0.65rem; color: var(--accent); transform: translateY(-50%); }
+    .c-field.textarea-field textarea:focus + label, .c-field.textarea-field textarea:not(:placeholder-shown) + label { top: 0; font-size: 0.65rem; color: var(--accent); transform: translateY(-50%); }
+
+    .error-msg { display: block; position: absolute; bottom: calc(100% + 6px); left: 0.9rem; background: #e53e3e; color: white; font-size: 0.66rem; padding: 0.22rem 0.5rem; border-radius: 4px; white-space: nowrap; pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity 0.15s, transform 0.15s; z-index: 10; }
+    .error-msg::after { content: ''; position: absolute; top: 100%; left: 10px; border: 4px solid transparent; border-top-color: #e53e3e; }
+    .c-field input:invalid:focus ~ .error-msg, .c-field textarea:invalid:focus ~ .error-msg { opacity: 1; transform: translateY(0); }
+
+    .select-wrap { position: relative; }
+    .select-wrap::after { content: '▾'; position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); color: #aaa; pointer-events: none; font-size: 0.8rem; }
+    select { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 2rem !important; }
+
+    textarea { resize: vertical; min-height: 90px; padding-bottom: 1.8rem !important; }
+    .textarea-wrap { position: relative; }
+    .char-counter { position: absolute; bottom: 8px; right: 10px; font-size: 0.67rem; color: #ccc; pointer-events: none; }
+    .char-counter.warn { color: #e53e3e; }
+
+    .contact-submit {
+      position: relative; width: 100%; margin-top: 1.2rem;
+      padding: 0.85rem 1rem; background: var(--primary); color: var(--white);
+      border: none; border-radius: 40px; font-family: inherit; font-weight: 700;
+      font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; overflow: hidden;
+      transition: background 0.25s, transform 0.1s, box-shadow 0.25s;
+    }
+    .contact-submit:hover { background: var(--accent); color: var(--primary); box-shadow: 0 8px 30px rgba(200,169,110,0.35); transform: translateY(-2px); }
+    .contact-submit:active { transform: scale(0.98); }
+    .contact-submit .spinner { display: none; width: 17px; height: 17px; border: 2.5px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+    .contact-submit.loading .btn-text { opacity: 0; }
+    .contact-submit.loading .spinner { display: block; }
+    .contact-submit.loading { pointer-events: none; }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    .contact-sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
+    .map-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .map-card iframe { width: 100%; height: 200px; display: block; border: none; }
+    .contact-info-card { background: var(--primary); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+    .contact-info-card h3 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 1rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.85rem; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+    .contact-item:last-child { margin-bottom: 0; }
+    .contact-item .icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .contact-item a { color: var(--accent); text-decoration: none; }
+    .contact-item a:hover { text-decoration: underline; }
+
+    .prices-section { padding: 7rem 5%; background: var(--off-white); }
+
+    .prices-table-wrap {
+      max-width: 1100px; margin: 0 auto; overflow-x: auto;
+      -webkit-overflow-scrolling: touch; border-radius: var(--radius);
+      box-shadow: 0 8px 40px rgba(26,26,46,0.12);
+    }
+    .prices-table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 0.9rem; min-width: 640px; }
+    .prices-table caption { font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); padding: 1.4rem 1.2rem 1rem; caption-side: top; text-align: center; background: var(--white); border-radius: var(--radius) var(--radius) 0 0; letter-spacing: 0.02em; }
+    .prices-table thead { position: sticky; top: 70px; z-index: 10; }
+    .prices-table thead tr { background: linear-gradient(90deg, var(--primary) 0%, #16213e 60%, #0f3460 100%); }
+    .prices-table thead th { color: var(--white); padding: 15px 16px; text-align: center; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; border: none; white-space: nowrap; border-bottom: 2px solid var(--accent); }
+    .prices-table thead th:first-child { text-align: left; padding-left: 20px; border-left: 3px solid var(--accent); }
+    .prices-table tbody tr { border-bottom: 1px solid rgba(200,169,110,0.15); transition: background-color 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s cubic-bezier(0.4,0,0.2,1); position: relative; }
+    .prices-table tbody tr:nth-child(even):not(.row-notice) { background: rgba(26,26,46,0.025); }
+    .prices-table tbody tr:not(.row-notice):hover { background: rgba(200,169,110,0.10) !important; box-shadow: inset 3px 0 0 var(--accent), 0 2px 12px rgba(200,169,110,0.12); }
+    .prices-table tbody tr:not(.row-notice):hover td:first-child { color: #8b5e1e; }
+    .prices-table td { padding: 13px 16px; text-align: center; color: var(--text); border: none; vertical-align: middle; transition: color 0.2s ease; }
+    .prices-table td:first-child { font-weight: 700; color: var(--primary); text-align: left; font-family: Georgia, 'Times New Roman', serif; padding-left: 20px; border-left: 3px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .prices-table tbody tr:not(.row-notice):hover td:first-child { border-left-color: var(--accent); }
+    .prices-table td:nth-child(2) { font-style: italic; color: var(--text-light); font-size: 0.85rem; }
+    .prices-table .price-cell { font-weight: 800; color: #7a5c1e; font-size: 0.95rem; background: rgba(200,169,110,0.08); border-radius: 4px; }
+    .prices-table tbody tr:not(.row-notice):hover .price-cell { color: #5c430f; background: rgba(200,169,110,0.18); }
+    .prices-table .slot-free { color: #ccc; font-size: 1rem; }
+    .prices-table .row-notice { background: linear-gradient(90deg, rgba(200,169,110,0.12), rgba(200,169,110,0.06)) !important; border-top: 2px solid var(--accent); border-bottom: 2px solid var(--accent); font-weight: 600; font-size: 0.85rem; }
+    .prices-table .row-notice td { color: #7a5c1e; text-align: center; }
+
+    @media (max-width: 768px) {
+      .prices-table-wrap::after { content: '← Derulează pentru mai mult →'; display: block; text-align: center; font-size: 0.72rem; color: var(--text-light); padding: 0.5rem; letter-spacing: 0.05em; background: var(--white); border-top: 1px solid rgba(200,169,110,0.15); border-radius: 0 0 var(--radius) var(--radius); }
+      .nav-links { display: none; }
+      .mission-inner { flex-direction: column; gap: 2.5rem; }
+      .mission-badge { width: 75px; height: 75px; bottom: -10px; right: -10px; }
+      .mission-badge .num { font-size: 1.4rem; }
+      .mission-stats { gap: 1.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .c-row { grid-template-columns: 1fr; }
+    }
+
+    .despre-section { padding: 7rem 5%; background: var(--white); }
+    .despre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 1100px; margin: 0 auto; align-items: start; }
+    .despre-block { display: flex; flex-direction: column; gap: 0.85rem; }
+    .despre-block h3 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.15rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+    .despre-iframe-wrap { width: 100%; max-width: 100%; border-radius: var(--radius); overflow: hidden; box-shadow: 0 8px 32px rgba(26,26,46,0.10); border: 2px solid rgba(200,169,110,0.35); line-height: 0; }
+    .despre-iframe-wrap iframe { width: 100%; max-width: 100%; display: block; height: 300px; border: none; }
+    .despre-caption { font-size: 0.8rem; color: var(--text-light); letter-spacing: 0.03em; }
+    @media (max-width: 768px) { .despre-grid { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════
+       DARK THEME
+    ═══════════════════════════ */
+    body.dark-theme {
+      --primary: #e8d5b0;
+      --text: #f8fafc;
+      --text-light: #94a3b8;
+      --off-white: #0f172a;
+      --white: #1e293b;
+      --accent-light: rgba(200,169,110,0.15);
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    body.dark-theme nav {
+      background-color: rgba(15,23,42,0.92);
+      border-bottom-color: rgba(200,169,110,0.15);
+    }
+    body.dark-theme .icon-bar { background: #e8d5b0; }
+    body.dark-theme .nav-links a { color: #94a3b8; }
+    body.dark-theme .nav-links a:hover { color: #e8d5b0; }
+    body.dark-theme .nav-logo span { color: #e8d5b0; }
+    body.dark-theme .section-header h2,
+    body.dark-theme .mission-headline { color: #e8d5b0; }
+    body.dark-theme .section-label { color: var(--accent); }
+    body.dark-theme .card { background: #1e293b; border-color: rgba(200,169,110,0.1); }
+    body.dark-theme .card h3 { color: #e8d5b0; }
+    body.dark-theme .card p { color: #94a3b8; }
+    body.dark-theme .mission { background: #0f172a; }
+    body.dark-theme .mission-text p { color: #94a3b8; }
+    body.dark-theme .mission-stats { border-top-color: rgba(255,255,255,0.08); }
+    body.dark-theme .stat strong { color: #e8d5b0; }
+    body.dark-theme .stat span { color: #94a3b8; }
+    body.dark-theme .team-section { background: #1e293b; }
+    body.dark-theme .teacher-card { background: #0f172a; }
+    body.dark-theme .teacher-card h3 { color: #e8d5b0; }
+    body.dark-theme .teacher-card p { color: #94a3b8; }
+    body.dark-theme .prices-section { background: #1e293b; }
+    body.dark-theme .prices-table { background: #1e293b; }
+    body.dark-theme .prices-table caption { background: #1e293b; color: #e8d5b0; }
+    body.dark-theme .prices-table td { color: #cbd5e1; border-color: rgba(255,255,255,0.06); }
+    body.dark-theme .prices-table td:first-child { color: #e8d5b0; }
+    body.dark-theme .prices-table tbody tr:nth-child(even):not(.row-notice) { background: rgba(255,255,255,0.03); }
+    body.dark-theme .price-cell { color: var(--accent) !important; background: rgba(200,169,110,0.12) !important; }
+    body.dark-theme .prices-table .slot-free { color: #475569; }
+    body.dark-theme .contact-section { background: #0f172a; }
+    body.dark-theme .contact-form-card { background: #1e293b; }
+    body.dark-theme fieldset { border-color: rgba(200,169,110,0.2); }
+    body.dark-theme .c-field input,
+    body.dark-theme .c-field select,
+    body.dark-theme .c-field textarea { background: #0f172a; border-color: rgba(255,255,255,0.12); color: #f8fafc; }
+    body.dark-theme .c-field label { color: #94a3b8; background: #0f172a; }
+    body.dark-theme .c-field.textarea-field label { background: transparent; }
+    body.dark-theme .map-card { background: #1e293b; }
+    body.dark-theme .contact-info-card { background: #243044; }
+    body.dark-theme .despre-section { background: #1e293b; }
+    body.dark-theme .despre-block h3 { color: #e8d5b0; }
+    body.dark-theme .despre-caption { color: #94a3b8; }
+    body.dark-theme footer { background: #080f1f; border-top: 1px solid rgba(200,169,110,0.1); }
+    body.dark-theme footer p { color: #94a3b8; }
+    body.dark-theme .social-link { border-color: rgba(200,169,110,0.25); color: #c8a96e; }
+
+    /* Neural section dark/light */
+    .neural-section {
+      padding: 7rem 5%;
+      background: linear-gradient(160deg, #0a0a1a 0%, #080808 100%);
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    body.dark-theme .neural-section {
+      background: linear-gradient(160deg, #050510 0%, #030308 100%);
+    }
+    .neural-intro-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #c8a96e; margin-bottom: 1rem; }
+    .neural-intro-title { font-family: Georgia, serif; font-size: clamp(2rem,4vw,3rem); font-weight: 700; color: #ffffff; margin-bottom: 1rem; }
+    .neural-intro-sub { color: rgba(255,255,255,0.5); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    /* THEME TOGGLE BUTTON */
+    .theme-toggle-btn {
+      background: transparent;
+      border: 1.5px solid rgba(200,169,110,0.5);
+      color: var(--text-light);
+      border-radius: 30px; padding: 6px 14px;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex; align-items: center; gap: 6px; font-family: inherit;
+    }
+    .theme-toggle-btn:hover { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+    body.dark-theme .theme-toggle-btn { color: #94a3b8; }
+  </style>
+
+  <!-- Neural Access Styles -->
+  <style>
+:root {
+  --primitive-black-900: #080808; --primitive-black-800: #111111;
+  --primitive-white: #ffffff; --primitive-white-03: rgba(255,255,255,0.03);
+  --primitive-white-10: rgba(255,255,255,0.10); --primitive-white-16: rgba(255,255,255,0.16);
+  --primitive-white-20: rgba(255,255,255,0.20); --primitive-white-35: rgba(255,255,255,0.35);
+  --primitive-cyan-100: #00f2ff; --primitive-cyan-10: rgba(0,242,255,0.10);
+  --primitive-cyan-08: rgba(0,242,255,0.08); --primitive-cyan-15: rgba(0,242,255,0.15);
+  --primitive-cyan-35: rgba(0,242,255,0.35); --primitive-cyan-40: rgba(0,242,255,0.40);
+  --primitive-green-100: #00ff88; --primitive-green-08: rgba(0,255,136,0.08);
+  --primitive-green-10: rgba(0,255,136,0.10); --primitive-green-40: rgba(0,255,136,0.40);
+  --primitive-red-100: #ff003c; --primitive-red-08: rgba(255,0,60,0.08);
+  --primitive-red-40: rgba(255,0,60,0.40); --primitive-red-55: rgba(255,0,60,0.55);
+  --primitive-amber-100: #ffaa00; --primitive-amber-08: rgba(255,170,0,0.08);
+  --primitive-amber-15: rgba(255,170,0,0.15); --primitive-amber-40: rgba(255,170,0,0.40);
+  --primitive-amber-60: rgba(255,170,0,0.60); --primitive-gray-500: #888888;
+  --primitive-space-4: 4px; --primitive-space-5: 5px; --primitive-space-6: 6px;
+  --primitive-space-8: 8px; --primitive-space-10: 10px; --primitive-space-12: 12px;
+  --primitive-space-14: 14px; --primitive-space-16: 16px; --primitive-space-20: 20px;
+  --primitive-space-28: 28px; --primitive-space-36: 36px; --primitive-space-40: 40px;
+  --primitive-space-48: 48px;
+  --primitive-radius-4: 4px; --primitive-radius-8: 8px; --primitive-radius-16: 16px;
+  --primitive-duration-200: 0.2s; --primitive-duration-300: 0.3s; --primitive-easing-out: ease;
+  --primitive-font-mono: 'Share Tech Mono', monospace; --primitive-font-display: 'Rajdhani', sans-serif;
+  --primitive-fs-10: 0.55rem; --primitive-fs-11: 0.60rem; --primitive-fs-13: 0.72rem;
+  --primitive-fs-14: 0.80rem; --primitive-fs-16: 0.90rem; --primitive-fs-26: 1.60rem;
+  --primitive-ls-1: 0.05em; --primitive-ls-2: 0.10em; --primitive-ls-3: 0.15em; --primitive-ls-4: 0.20em;
+  --primitive-grid-size: 40px;
+  --color-bg: var(--primitive-black-900); --color-surface: var(--primitive-white-03);
+  --color-surface-hover: var(--primitive-black-800);
+  --color-border-default: var(--primitive-white-10); --color-border-subtle: var(--primitive-white-16);
+  --color-border-focus: var(--primitive-cyan-100); --color-border-success: var(--primitive-green-40);
+  --color-border-error: var(--primitive-red-40); --color-border-warning: var(--primitive-amber-40);
+  --color-text-primary: var(--primitive-white); --color-text-muted: var(--primitive-gray-500);
+  --color-text-disabled: var(--primitive-white-20); --color-text-accent: var(--primitive-cyan-40);
+  --color-focus: var(--primitive-cyan-100); --color-success: var(--primitive-green-100);
+  --color-error: var(--primitive-red-100); --color-warning: var(--primitive-amber-100);
+  --color-ring-focus: var(--primitive-cyan-10); --color-ring-success: var(--primitive-green-08);
+  --color-ring-error: var(--primitive-red-08);
+  --shadow-focus: 0 0 8px var(--color-focus); --shadow-success: 0 0 8px var(--color-success);
+  --shadow-error: 0 0 8px var(--color-error); --shadow-warning: 0 0 8px var(--color-warning);
+  --font-body: var(--primitive-font-mono); --font-heading: var(--primitive-font-display);
+  --text-xs: var(--primitive-fs-10); --text-sm: var(--primitive-fs-11);
+  --text-base: var(--primitive-fs-13); --text-input: var(--primitive-fs-14);
+  --text-btn: var(--primitive-fs-16); --text-h1: var(--primitive-fs-26);
+  --tracking-tight: var(--primitive-ls-1); --tracking-normal: var(--primitive-ls-2);
+  --tracking-wide: var(--primitive-ls-3); --tracking-wider: var(--primitive-ls-4);
+  --space-1: var(--primitive-space-4); --space-2: var(--primitive-space-5);
+  --space-3: var(--primitive-space-6); --space-4: var(--primitive-space-8);
+  --space-5: var(--primitive-space-12); --space-6: var(--primitive-space-14);
+  --space-7: var(--primitive-space-20); --space-8: var(--primitive-space-28);
+  --space-9: var(--primitive-space-36); --space-10: var(--primitive-space-48);
+  --radius-sm: var(--primitive-radius-8); --radius-md: var(--primitive-radius-16); --radius-xs: var(--primitive-radius-4);
+  --duration-fast: var(--primitive-duration-200); --duration-med: var(--primitive-duration-300);
+  --ease-default: var(--primitive-easing-out); --transition-fast: var(--duration-fast) var(--ease-default);
+  --transition-med: var(--duration-med) var(--ease-default);
+  --grid-line: rgba(0,242,255,0.025);
+  --card-bg: rgba(255,255,255,0.02); --card-border: var(--color-border-default);
+  --card-border-top: var(--color-border-subtle);
+  --card-shadow: 0 30px 80px rgba(0,0,0,0.60), 0 0 0 1px rgba(0,242,255,0.04);
+  --card-radius: var(--radius-md); --card-padding-y: var(--space-10);
+  --card-padding-x: var(--primitive-space-40); --card-width: 440px;
+  --field-label-color: var(--color-text-muted); --field-label-floated-color: var(--color-focus);
+  --field-hint-height: 1.2em;
+  --btn-disabled-bg: var(--primitive-white-03); --btn-disabled-text: var(--color-text-disabled);
+  --btn-active-bg: linear-gradient(135deg, var(--primitive-cyan-15), var(--primitive-green-10));
+  --btn-active-border: var(--color-border-focus);
+  --btn-terms-bg: linear-gradient(135deg, var(--primitive-amber-15), var(--primitive-amber-08));
+  --btn-terms-border: var(--color-border-warning);
+  --services-empty-border: var(--color-border-default); --services-filled-border: var(--primitive-cyan-15);
+}
+
+.page { background: var(--color-bg); min-height: 100vh; display: grid; place-items: center; font-family: var(--font-body); color: var(--color-text-primary); }
+.page__grid-bg { position: fixed; inset: 0; background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: var(--primitive-grid-size) var(--primitive-grid-size); pointer-events: none; will-change: transform; }
+
+.neural-card { background: var(--card-bg); border: 1px solid var(--card-border); border-top-color: var(--card-border-top); backdrop-filter: blur(20px); border-radius: var(--card-radius); padding: var(--card-padding-y) var(--card-padding-x); width: var(--card-width); box-shadow: var(--card-shadow); filter: brightness(1); transition: filter var(--transition-med); }
+.neural-card:focus-within { filter: brightness(1.12); }
+
+.card__header { margin-bottom: var(--space-9); text-align: center; }
+.card__title { font-family: var(--font-heading); font-size: var(--text-h1); font-weight: 700; letter-spacing: var(--tracking-normal); color: var(--color-text-primary); text-shadow: 0 0 20px rgba(0,242,255,0.30); }
+.card__subtitle { font-size: var(--text-sm); letter-spacing: var(--tracking-wider); color: var(--color-text-accent); margin-top: var(--space-3); text-transform: uppercase; }
+
+.divider { width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--color-focus), transparent); opacity: 0.35; margin: var(--space-5) auto 0; }
+
+.card__footer { margin-top: var(--space-7); text-align: center; font-size: var(--text-xs); letter-spacing: var(--tracking-wide); color: rgba(255,255,255,0.15); }
+.card__footer-action { cursor: pointer; color: rgba(0,242,255,0.3); border-bottom: 1px solid rgba(0,242,255,0.15); background: none; border-top: none; border-left: none; border-right: none; font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); }
+
+.field { position: relative; padding-bottom: calc(var(--field-hint-height) + var(--space-2)); margin-bottom: var(--space-4); }
+.field__input { width: 100%; background: var(--color-surface); border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: var(--space-6) var(--primitive-space-40) var(--space-6) var(--space-6); font-family: var(--font-body); font-size: var(--text-input); color: var(--color-text-primary); outline: none; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); letter-spacing: var(--tracking-tight); }
+.field__input::placeholder { color: transparent; }
+.field__label { position: absolute; left: var(--space-6); top: calc(var(--space-6) + var(--text-base)); transform: translateY(-50%); transform-origin: left center; font-size: var(--text-base); letter-spacing: var(--tracking-normal); color: var(--field-label-color); pointer-events: none; transition: transform var(--transition-fast), color var(--transition-fast); padding: 0 4px; background: transparent; will-change: transform; }
+.field__dot { position: absolute; right: var(--space-6); top: calc(var(--space-6) + var(--text-base)); transform: translateY(-50%); width: 7px; height: 7px; border-radius: 50%; background: transparent; transition: background var(--transition-fast), box-shadow var(--transition-fast); pointer-events: none; }
+.field__hint { position: absolute; bottom: 0; left: var(--space-6); height: var(--field-hint-height); font-size: var(--text-xs); letter-spacing: var(--tracking-normal); color: var(--primitive-red-55); text-transform: uppercase; opacity: 0; transition: opacity var(--transition-fast); will-change: opacity; }
+.field__input:focus { border-color: var(--color-border-focus); box-shadow: 0 0 0 2px var(--color-ring-focus), inset 0 0 20px rgba(0,242,255,0.03); }
+.field:focus-within .field__dot { background: var(--color-focus); box-shadow: var(--shadow-focus); }
+.field__input:focus + .field__label, .field__input:not(:placeholder-shown) + .field__label { transform: translateY(-160%) scale(0.78); color: var(--field-label-floated-color); background: var(--color-bg); }
+.field__input:valid:not(:placeholder-shown) { border-color: var(--color-border-success); box-shadow: 0 0 0 2px var(--color-ring-success); }
+.field__input:valid:not(:placeholder-shown) + .field__label { color: var(--color-success); }
+.field:has(.field__input:valid:not(:placeholder-shown)) .field__dot { background: var(--color-success); box-shadow: var(--shadow-success); }
+.field__input:invalid:not(:placeholder-shown) { border-color: var(--color-border-error); box-shadow: 0 0 0 2px var(--color-ring-error); }
+.field__input:invalid:not(:placeholder-shown) + .field__label { color: var(--color-error); }
+.field:has(.field__input:invalid:not(:placeholder-shown)) .field__dot { background: var(--color-error); box-shadow: var(--shadow-error); }
+.field:has(.field__input:invalid:not(:placeholder-shown)) .field__hint { opacity: 1; }
+
+.services { margin-bottom: var(--space-8); }
+.services__label { display: block; font-size: var(--text-xs); letter-spacing: var(--tracking-wide); color: var(--color-text-muted); margin-bottom: var(--space-3); text-transform: uppercase; }
+.services__list { display: flex; gap: var(--space-4); flex-wrap: wrap; min-height: 36px; border: 1px dashed var(--services-empty-border); border-radius: var(--radius-sm); padding: var(--space-4); position: relative; transition: border-color var(--transition-fast); }
+.services__list:empty::before { content: 'NICIUN SERVICIU SELECTAT'; font-size: var(--text-xs); letter-spacing: var(--tracking-wider); color: rgba(255,255,255,0.18); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; }
+.services__list:not(:empty) { border-color: var(--services-filled-border); }
+.services__tag { background: var(--primitive-cyan-08); border: 1px solid rgba(0,242,255,0.20); border-radius: var(--radius-xs); padding: var(--space-1) var(--primitive-space-10); font-size: var(--text-xs); letter-spacing: var(--tracking-normal); color: var(--color-focus); cursor: pointer; transition: opacity var(--transition-fast), transform var(--transition-fast); will-change: transform; user-select: none; }
+.services__tag:hover { transform: scale(1.05); opacity: 0.85; }
+.services__controls { display: flex; gap: var(--space-4); margin-top: var(--space-4); }
+.services__btn { font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: var(--tracking-normal); color: rgba(0,242,255,0.50); background: transparent; border: 1px solid rgba(0,242,255,0.15); border-radius: var(--radius-xs); padding: var(--space-1) var(--primitive-space-10); cursor: pointer; transition: color var(--transition-fast), border-color var(--transition-fast); }
+.services__btn:hover { color: var(--color-focus); border-color: rgba(0,242,255,0.40); }
+
+.terms { display: flex; align-items: center; gap: var(--primitive-space-10); margin-bottom: var(--space-7); cursor: pointer; user-select: none; }
+.terms__checkbox { position: absolute; opacity: 0; width: 0; height: 0; }
+.terms__box { width: 16px; height: 16px; border: 1px solid var(--primitive-white-20); border-radius: 3px; background: var(--color-surface); display: grid; place-items: center; flex-shrink: 0; transition: border-color var(--transition-fast), background var(--transition-fast); }
+.terms__box::after { content: ''; width: 8px; height: 5px; border-left: 1.5px solid var(--color-success); border-bottom: 1.5px solid var(--color-success); transform: rotate(-45deg) scale(0); transition: transform var(--transition-fast); will-change: transform; }
+.terms__checkbox:checked + .terms__box { border-color: var(--color-success); background: var(--primitive-green-10); }
+.terms__checkbox:checked + .terms__box::after { transform: rotate(-45deg) scale(1); }
+.terms__text { font-size: var(--text-xs); letter-spacing: var(--tracking-normal); color: var(--primitive-white-35); }
+.terms__link { color: rgba(0,242,255,0.60); text-decoration: none; border-bottom: 1px solid rgba(0,242,255,0.20); }
+
+.btn { width: 100%; padding: 15px; border-radius: var(--radius-sm); border: 1px solid var(--primitive-white-10); font-family: var(--font-heading); font-size: var(--text-btn); font-weight: 700; letter-spacing: var(--tracking-wider); text-transform: uppercase; cursor: not-allowed; background: var(--btn-disabled-bg); color: var(--btn-disabled-text); pointer-events: none; transition: background var(--transition-med), border-color var(--transition-med), color var(--transition-med), box-shadow var(--transition-med); position: relative; overflow: hidden; }
+.btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transform: translateX(-100%); will-change: transform; }
+.form:has(.field__input:required:valid:not(:placeholder-shown) ~ .field__label) .btn { cursor: pointer; pointer-events: all; background: var(--btn-active-bg); border-color: var(--btn-active-border); color: var(--color-text-primary); text-shadow: 0 0 10px rgba(0,242,255,0.50); animation: pulse-cyan 2s infinite; }
+.form:has(.field__input:required:valid:not(:placeholder-shown) ~ .field__label) .btn::before { animation: shimmer 2.5s infinite; }
+.form:has(.terms__checkbox:checked):has(.field__input:required:valid:not(:placeholder-shown) ~ .field__label) .btn { background: var(--btn-terms-bg); border-color: var(--btn-terms-border); text-shadow: 0 0 10px var(--primitive-amber-60); animation: pulse-amber 2s infinite; }
+@keyframes pulse-cyan { 0%, 100% { box-shadow: 0 0 15px rgba(0,242,255,0.15), 0 0 0 0 rgba(0,242,255,0.30); } 50% { box-shadow: 0 0 30px rgba(0,242,255,0.25), 0 0 0 8px rgba(0,242,255,0.00); } }
+@keyframes pulse-amber { 0%, 100% { box-shadow: 0 0 15px rgba(255,170,0,0.20), 0 0 0 0 rgba(255,170,0,0.35); } 50% { box-shadow: 0 0 30px rgba(255,170,0,0.35), 0 0 0 8px rgba(255,170,0,0.00); } }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+.debug-badge { display: none; }
+.debug .page__grid-bg { outline: 2px solid rgba(255,0,200,0.7); outline-offset: -2px; }
+.debug .neural-card { outline: 2px solid rgba(0,242,255,0.8); outline-offset: -2px; }
+.debug .field__label { outline: 2px solid rgba(0,255,136,0.7); outline-offset: -2px; }
+.debug .field__dot { outline: 2px solid rgba(255,170,0,0.8); outline-offset: -2px; }
+.debug .btn { outline: 2px solid rgba(255,60,60,0.8); outline-offset: -2px; }
+.debug .services__tag { outline: 2px solid rgba(100,200,255,0.7); outline-offset: -2px; }
+.debug .debug-badge { display: flex; gap: var(--space-7); flex-wrap: wrap; position: fixed; bottom: var(--primitive-space-16); left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.88); border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: var(--primitive-space-10) var(--primitive-space-16); font-size: 0.5rem; letter-spacing: var(--tracking-normal); z-index: 999; }
+.debug-badge__item { display: flex; align-items: center; gap: 5px; color: rgba(255,255,255,0.50); }
+.debug-badge__dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  </style>
+</head>
+
+<!-- IMPORTANT: id="js-body" necesar pentru debug mode -->
+<body id="js-body">
+
+  <a href="#main-content" class="skip-link">Sari la conținut</a>
+
+  <nav aria-label="Navigare principală">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Scoala de Limbi Straine – Acasă">
+        <div class="nav-logo-circle" aria-hidden="true">S</div>
+        <span>Scoala de Limbi<br>Straine</span>
+      </a>
+
+      <button class="menu-btn"
+              aria-label="Deschide meniul de navigație"
+              aria-expanded="false"
+              aria-controls="nav-menu"
+              onclick="
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                this.setAttribute('aria-label', expanded ? 'Deschide meniul de navigație' : 'Închide meniul de navigație');
+                document.getElementById('nav-menu').classList.toggle('open');
+              ">
+        <span class="icon-bar" aria-hidden="true"></span>
+        <span class="icon-bar" aria-hidden="true"></span>
+        <span class="icon-bar" aria-hidden="true"></span>
+      </button>
+
+      <ul class="nav-links" role="list" id="nav-menu">
+        <li><a href="#servicii">Servicii</a></li>
+        <li><a href="#misiune">Misiune</a></li>
+        <li><a href="#cursuri">Cursuri</a></li>
+        <li><a href="#despre">Locație</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#inregistrare" class="nav-cta">Înregistrare</a></li>
+        <li>
+          <button class="theme-toggle-btn" id="themeBtn"
+                  aria-label="Schimbă tema"
+                  onclick="toggleTheme()">🌙 Temă</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+  <section class="hero" aria-label="Secțiune principală">
+    <div class="hero-particles">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div class="hero-content">
+      <div class="logo-circle">S</div>
+      <h1>Scoala de<br><em>Limbi Straine</em></h1>
+      <p>Creați viitorul cu noi</p>
+      <a href="#servicii" class="site-btn">Începe</a>
+    </div>
+  </section>
+
+  <section class="services" id="servicii">
+    <div class="section-header">
+      <span class="section-label">Ce oferim</span>
+      <h2>Cursurile Noastre</h2>
+      <p>Descoperă o gamă completă de cursuri adaptate nevoilor tale de comunicare globală.</p>
+    </div>
+    <div class="services-grid">
+      <article class="card" tabindex="0" aria-label="Curs de Engleză">
+        <div class="card-icon" aria-hidden="true">🇬🇧</div>
+        <h3>Engleză</h3>
+        <p>De la A1 la C2, cursuri intensive și standard pentru toate vârstele și nivelurile.</p>
+        <span class="card-tag">Cel mai popular</span>
+      </article>
+      <article class="card" tabindex="0" aria-label="Curs de Franceză">
+        <div class="card-icon" aria-hidden="true">🇫🇷</div>
+        <h3>Franceză</h3>
+        <p>Explorează limba lui Molière cu profesori nativi și metode moderne de predare.</p>
+        <span class="card-tag">Disponibil</span>
+      </article>
+      <article class="card" tabindex="0" aria-label="Curs de Germană">
+        <div class="card-icon" aria-hidden="true">🇩🇪</div>
+        <h3>Germană</h3>
+        <p>Pregătire pentru examene oficiale Goethe-Institut și cursuri de afaceri.</p>
+        <span class="card-tag">Business</span>
+      </article>
+      <article class="card" tabindex="0" aria-label="Curs de Spaniolă">
+        <div class="card-icon" aria-hidden="true">🇪🇸</div>
+        <h3>Spaniolă</h3>
+        <p>Vorbită de peste 500 de milioane de oameni — înveți rapid cu metoda noastră conversațională.</p>
+        <span class="card-tag">Nou</span>
+      </article>
+      <article class="card" tabindex="0" aria-label="Curs de Italiană">
+        <div class="card-icon" aria-hidden="true">🇮🇹</div>
+        <h3>Italiană</h3>
+        <p>Limbă melodică pentru cultură, călătorii și afaceri în Peninsula Italică.</p>
+        <span class="card-tag">Disponibil</span>
+      </article>
+      <article class="card" tabindex="0" aria-label="Cursuri Online">
+        <div class="card-icon" aria-hidden="true">🌐</div>
+        <h3>Curs Online</h3>
+        <p>Platforma noastră digitală îți permite să înveți orice limbă de oriunde din lume.</p>
+        <span class="card-tag">Flexibil</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="mission" id="misiune">
+    <div class="mission-inner">
+      <div class="mission-image">
+        <div class="mission-img-wrap">
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=960&fm=webp&q=80" type="image/webp">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=960&q=80"
+              alt="Studenți în sesiune de curs de limbi străine — mediu modern de învățare"
+              width="960" height="640" class="mission-img-illustration">
+          </picture>
+        </div>
+        <div class="mission-badge">
+          <span class="num">10+</span>
+          <span class="lbl">Ani de experiență</span>
+        </div>
+      </div>
+      <div class="mission-text">
+        <span class="section-label">Misiunea noastră</span>
+        <h2 class="visually-hidden">Misiunea noastră</h2>
+        <h3 class="mission-headline">Construim punți între culturi și oameni</h3>
+        <p>Credem că fiecare persoană merită acces la educație lingvistică de calitate. Metodele noastre combină cele mai recente cercetări pedagogice cu pasiunea pentru comunicare autentică.</p>
+        <p>Cu profesori certificați și un mediu de învățare stimulant, transformăm studiul limbilor dintr-o obligație într-o aventură.</p>
+        <div class="mission-stats">
+          <div class="stat"><strong>2,400+</strong><span>Absolvenți</span></div>
+          <div class="stat"><strong>12</strong><span>Limbi predate</span></div>
+          <div class="stat"><strong>98%</strong><span>Satisfacție</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section" id="echipa" aria-label="Echipa de profesori">
+    <div class="section-header">
+      <span class="section-label">Oamenii din spatele cursurilor</span>
+      <h2>Echipa Noastră</h2>
+      <p>Profesori certificați cu experiență internațională în predarea limbilor străine.</p>
+    </div>
+    <div class="gallery">
+      <article class="teacher-card">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&fm=webp&q=80" type="image/webp">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80"
+            alt="Elena Popescu — Profesoară de Engleză, certificare CELTA Cambridge"
+            width="600" height="600" loading="lazy" decoding="async" class="teacher-photo">
+        </picture>
+        <h3>Elena Popescu</h3>
+        <p>Engleză · CELTA Cambridge</p>
+      </article>
+      <article class="teacher-card">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&fm=webp&q=80" type="image/webp">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+            alt="Andrei Moraru — Profesor de Franceză, absolvent Sorbona Paris"
+            width="600" height="600" loading="lazy" decoding="async" class="teacher-photo">
+        </picture>
+        <h3>Andrei Moraru</h3>
+        <p>Franceză · Sorbona Paris</p>
+      </article>
+      <article class="teacher-card">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&fm=webp&q=80" type="image/webp">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80"
+            alt="Maria Ionescu — Profesoară de Germană, certificare Goethe-Institut"
+            width="600" height="600" loading="lazy" decoding="async" class="teacher-photo">
+        </picture>
+        <h3>Maria Ionescu</h3>
+        <p>Germană · Goethe-Institut</p>
+      </article>
+      <article class="teacher-card">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&fm=webp&q=80" type="image/webp">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80"
+            alt="Victor Lupu — Profesor de Spaniolă și Italiană, experiență Madrid și Roma"
+            width="600" height="600" loading="lazy" decoding="async" class="teacher-photo">
+        </picture>
+        <h3>Victor Lupu</h3>
+        <p>Spaniolă & Italiană · Madrid</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="prices-section" id="cursuri" aria-label="Prețuri și orar cursuri">
+    <div class="section-header">
+      <span class="section-label">Transparență totală</span>
+      <h2>Lista de Prețuri &amp; Orar</h2>
+      <p>Alege cursul potrivit pentru tine. Toate prețurile includ materialele didactice.</p>
+    </div>
+    <div class="prices-table-wrap">
+      <table class="prices-table">
+        <caption>Program Cursuri — Scoala de Limbi Straine 2025/2026</caption>
+        <thead>
+          <tr>
+            <th>Limbă</th><th>Nivel</th><th>Luni</th><th>Marți</th>
+            <th>Miercuri</th><th>Joi</th><th>Vineri</th><th>Preț / Lună</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2">🇬🇧 Engleză</td><td>A1 – B1</td>
+            <td>09:00–11:00</td><td class="slot-free">—</td><td>09:00–11:00</td>
+            <td class="slot-free">—</td><td>09:00–11:00</td><td class="price-cell">800 lei</td>
+          </tr>
+          <tr>
+            <td>B2 – C2</td><td class="slot-free">—</td><td>17:00–19:00</td>
+            <td class="slot-free">—</td><td>17:00–19:00</td><td class="slot-free">—</td>
+            <td class="price-cell">950 lei</td>
+          </tr>
+          <tr>
+            <td>🇫🇷 Franceză</td><td>Toate nivelurile</td>
+            <td class="slot-free">—</td><td>10:00–12:00</td><td class="slot-free">—</td>
+            <td>10:00–12:00</td><td class="slot-free">—</td><td class="price-cell">750 lei</td>
+          </tr>
+          <tr>
+            <td>🇩🇪 Germană</td><td>A1 – C1</td>
+            <td>11:00–13:00</td><td class="slot-free">—</td><td>11:00–13:00</td>
+            <td class="slot-free">—</td><td>11:00–13:00</td><td class="price-cell">850 lei</td>
+          </tr>
+          <tr>
+            <td>🇪🇸 Spaniolă</td><td>A1 – B2</td>
+            <td class="slot-free">—</td><td class="slot-free">—</td><td>14:00–16:00</td>
+            <td class="slot-free">—</td><td>14:00–16:00</td><td class="price-cell">700 lei</td>
+          </tr>
+          <tr>
+            <td>🌐 Online</td><td>Toate nivelurile</td>
+            <td>Flexibil</td><td>Flexibil</td><td>Flexibil</td>
+            <td>Flexibil</td><td>Flexibil</td><td class="price-cell">600 lei</td>
+          </tr>
+          <tr class="row-notice">
+            <td colspan="6">🎉 Reducere 15% pentru înscrieri înainte de 1 Iunie 2025 — valabil pentru toate cursurile</td>
+            <td colspan="2">Aplică reducerea →</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact" aria-label="Contactează-ne">
+    <div class="section-header">
+      <span class="section-label">Hai să vorbim</span>
+      <h2>Contactează-ne</h2>
+      <p>Completează formularul și te vom contacta în cel mult 24h.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-form-card">
+        <form id="contactForm">
+          <fieldset>
+            <legend>Date Personale</legend>
+            <div class="c-row">
+              <div class="c-field">
+                <input type="text" id="fname" name="fname" placeholder=" "
+                  autocomplete="given-name" required minlength="2" maxlength="50"
+                  pattern="[A-Za-zÀ-ȕ\s\-]{2,50}" title="Prenumele trebuie să conțină 2–50 litere"/>
+                <label for="fname">Prenume</label>
+                <span class="error-msg">Introduceți prenumele</span>
+              </div>
+              <div class="c-field">
+                <input type="text" id="lname" name="lname" placeholder=" "
+                  autocomplete="family-name" required minlength="2" maxlength="50"
+                  pattern="[A-Za-zÀ-ȕ\s\-]{2,50}" title="Numele trebuie să conțină 2–50 litere"/>
+                <label for="lname">Nume</label>
+                <span class="error-msg">Introduceți numele</span>
+              </div>
+            </div>
+            <div class="c-field">
+              <input type="email" id="cemail" name="email" placeholder=" "
+                autocomplete="email" required maxlength="100"
+                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                title="Format valid: name@domain.com"/>
+              <label for="cemail">Adresă Email</label>
+              <span class="error-msg">Email invalid (ex: name@domain.com)</span>
+            </div>
+            <div class="c-field">
+              <input type="tel" id="ctel" name="tel" placeholder=" " autocomplete="tel"
+                maxlength="15" pattern="[\+0-9\s\-]{7,15}" title="Format: +373 22 000 000"/>
+              <label for="ctel">Telefon (opțional)</label>
+              <span class="error-msg">Format: +373 22 000 000</span>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Mesaj</legend>
+            <div class="c-field">
+              <div class="select-wrap">
+                <select id="subject" name="subject" autocomplete="off" required
+                  onchange="this.classList.toggle('has-value', this.value !== '')">
+                  <option value="" disabled selected></option>
+                  <option value="info">Informații generale</option>
+                  <option value="inscriere">Înscriere la curs</option>
+                  <option value="preturi">Prețuri și pachete</option>
+                  <option value="online">Cursuri online</option>
+                  <option value="other">Altele</option>
+                </select>
+              </div>
+              <label for="subject">Subiect</label>
+            </div>
+            <div class="c-field textarea-field">
+              <div class="textarea-wrap">
+                <textarea id="message" name="message" placeholder=" "
+                  maxlength="300" autocomplete="off" oninput="updateCounter(this)" required></textarea>
+                <span class="char-counter" id="charCount">0 / 300</span>
+              </div>
+              <label for="message">Mesajul tău</label>
+              <span class="error-msg">Mesajul nu poate fi gol</span>
+            </div>
+          </fieldset>
+          <button type="submit" class="contact-submit" id="submitBtn">
+            <span class="btn-text">Trimite mesajul →</span>
+            <span class="spinner"></span>
+          </button>
+        </form>
+      </div>
+      <div class="contact-sidebar">
+        <div class="map-card">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=28.78,46.98,28.88,47.04&layer=mapnik&marker=47.0105,28.8638"
+            loading="lazy" title="Locatia scolii pe harta"></iframe>
+        </div>
+        <div class="contact-info-card">
+          <h3>Contact Direct</h3>
+          <div class="contact-item"><span class="icon">📍</span><span>Bd. Stefan cel Mare 123,<br/>Chisinau, MD-2001</span></div>
+          <div class="contact-item"><span class="icon">📞</span><a href="tel:+37322000000">+373 22 000 000</a></div>
+          <div class="contact-item"><span class="icon">✉️</span><a href="mailto:contact@sls.md">contact@sls.md</a></div>
+          <div class="contact-item"><span class="icon">🕐</span><span>Lun–Vin: 9:00 – 18:00</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="despre-section" id="despre" aria-label="Locație și Prezentare">
+    <div class="section-header">
+      <span class="section-label">Unde ne găsești</span>
+      <h2>Locație &amp; Prezentare</h2>
+      <p>Descoperă școala noastră și găsește-ne ușor pe hartă.</p>
+    </div>
+    <div class="despre-grid">
+      <div class="despre-block">
+        <h3><span>🎬</span> Video de Prezentare</h3>
+        <div class="despre-iframe-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/K3-4ecygTqw?rel=0&modestbranding=1"
+            title="Video de prezentare Scoala de Limbi Straine"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <p class="despre-caption">Videoclip reprezentativ pentru tema site-ului nostru.</p>
+      </div>
+      <div class="despre-block">
+        <h3><span>📍</span> Harta Locației</h3>
+        <div class="despre-iframe-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.5!2d28.8273!3d47.0245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c3628b769a1%3A0x37d1d6305749dd3c!2sBulevardul%20%C8%98tefan%20cel%20Mare%20%C8%99i%20Sf%C3%A2nt%2C%20Chi%C8%99in%C4%83u!5e0!3m2!1sro!2smd!4v1700000000000"
+            title="Locația Scolii de Limbi Straine — Bd. Ștefan cel Mare 123, Chișinău"
+            style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="despre-caption">Bd. Ștefan cel Mare 123, Chișinău, MD-2001</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secțiunea Neural Access / Înregistrare -->
+  <section id="inregistrare" class="neural-section" aria-label="Înregistrare">
+    <div style="text-align:center; margin-bottom: 3rem;">
+      <span class="neural-intro-label">Acces Platformă</span>
+      <h2 class="neural-intro-title">Înregistrare &amp; Acces</h2>
+      <p class="neural-intro-sub">Creează-ți contul și accesează platforma noastră de cursuri online.</p>
+    </div>
+    <div style="width:100%; display:flex; flex-direction:column; align-items:center;">
+
+      <div class="page__grid-bg" aria-hidden="true"></div>
+
+      <div class="neural-card">
+        <header class="card__header">
+          <h2 class="card__title">NEURAL_ACCESS</h2>
+          <p class="card__subtitle">Cealic Damian &nbsp;·&nbsp; RC 251</p>
+          <div class="divider" aria-hidden="true"></div>
+        </header>
+
+        <form class="form" novalidate>
+          <div class="field">
+            <input class="field__input" type="text" name="name"
+                   placeholder="name" required minlength="3" autocomplete="off" />
+            <label class="field__label">NUME COMPLET</label>
+            <span class="field__dot" aria-hidden="true"></span>
+            <span class="field__hint">Minim 3 caractere</span>
+          </div>
+          <div class="field">
+            <input class="field__input" type="email" name="email"
+                   placeholder="email" required autocomplete="off" />
+            <label class="field__label">ADRESĂ EMAIL</label>
+            <span class="field__dot" aria-hidden="true"></span>
+            <span class="field__hint">Format invalid</span>
+          </div>
+          <div class="field">
+            <input class="field__input" type="password" name="pass"
+                   placeholder="password" required minlength="8" pattern=".{8,}" autocomplete="off" />
+            <label class="field__label">PAROLĂ</label>
+            <span class="field__dot" aria-hidden="true"></span>
+            <span class="field__hint">Minim 8 caractere</span>
+          </div>
+
+          <div class="services">
+            <span class="services__label">SERVICII ACTIVE</span>
+            <div class="services__list" id="js-service-list"></div>
+            <div class="services__controls">
+              <button type="button" class="services__btn" data-service="API_v2">+ API v2</button>
+              <button type="button" class="services__btn" data-service="Neural DB">+ Neural DB</button>
+              <button type="button" class="services__btn" data-service="Edge CDN">+ Edge CDN</button>
+              <button type="button" class="services__btn" data-clear>✕ Clear</button>
+            </div>
+          </div>
+
+          <label class="terms">
+            <input class="terms__checkbox" type="checkbox" name="terms" />
+            <span class="terms__box" aria-hidden="true"></span>
+            <span class="terms__text">Accept <a class="terms__link" href="#" onclick="return false">Termenii și Condițiile</a></span>
+          </label>
+
+          <button class="btn" type="submit">INIȚIALIZARE SISTEM</button>
+        </form>
+
+        <footer class="card__footer">
+          NO-ID CSS &nbsp;·&nbsp; PRIMITIVE→SEMANTIC→COMPONENT &nbsp;·&nbsp; ZERO CLS
+          &nbsp;·&nbsp;
+          <button class="card__footer-action" id="js-debug-toggle">[DEBUG MODE]</button>
+        </footer>
+      </div>
+
+      <div class="debug-badge" aria-hidden="true">
+        <span class="debug-badge__item"><span class="debug-badge__dot" style="background:#ff00c8"></span>page__grid-bg</span>
+        <span class="debug-badge__item"><span class="debug-badge__dot" style="background:#00f2ff"></span>card</span>
+        <span class="debug-badge__item"><span class="debug-badge__dot" style="background:#00ff88"></span>field__label</span>
+        <span class="debug-badge__item"><span class="debug-badge__dot" style="background:#ffaa00"></span>field__dot</span>
+        <span class="debug-badge__item"><span class="debug-badge__dot" style="background:#ff3c3c"></span>btn</span>
+        <span class="debug-badge__item"><span class="debug-badge__dot" style="background:#64c8ff"></span>services__tag</span>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 <strong>Scoala de Limbi Straine</strong> — Creati viitorul cu noi.</p>
+    <nav aria-label="Rețele sociale">
+      <ul style="list-style:none; display:flex; justify-content:center; gap:1.5rem; padding:0; margin:1rem 0 0;">
+        <li><a href="#" class="social-link" aria-label="Vizitează pagina noastră de Facebook" rel="noopener noreferrer"><span class="visually-hidden">Facebook</span></a></li>
+        <li><a href="#" class="social-link" aria-label="Vizitează pagina noastră de Instagram" rel="noopener noreferrer"><span class="visually-hidden">Instagram</span></a></li>
+        <li><a href="#" class="social-link" aria-label="Vizitează pagina noastră de LinkedIn" rel="noopener noreferrer"><span class="visually-hidden">LinkedIn</span></a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <script>
+    /* ══════════════════════════════════
+       TEMA DARK / LIGHT — FIX COMPLET
+       Aplicat pe document.body direct.
+       localStorage pentru persistență.
+    ══════════════════════════════════ */
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-theme');
+      const btn = document.getElementById('themeBtn');
+      if (btn) btn.textContent = isDark ? '☀️ Temă' : '🌙 Temă';
+      try { localStorage.setItem('sls_theme', isDark ? 'dark' : 'light'); } catch(e) {}
+    }
+
+    /* Restaurează tema la încărcare, înainte de primul render */
+    (function() {
+      try {
+        if (localStorage.getItem('sls_theme') === 'dark') {
+          document.body.classList.add('dark-theme');
+          /* Butonul poate să nu existe încă — îl actualizăm după DOMContentLoaded */
+          document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('themeBtn');
+            if (btn) btn.textContent = '☀️ Temă';
+          });
+        }
+      } catch(e) {}
+    })();
+
+    /* Micro-animații: card hover via tastatură */
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          card.style.transform = 'translateY(-12px)';
+          setTimeout(() => card.style.transform = '', 300);
+        }
+      });
+    });
+
+    /* Navbar: scroll shadow */
+    const navEl = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      navEl.style.boxShadow = window.scrollY > 10
+        ? '0 4px 20px rgba(0,0,0,0.12)' : 'none';
+    }, { passive: true });
+
+    /* Contact Form */
+    function updateCounter(el) {
+      const c = document.getElementById('charCount');
+      const n = el.value.length;
+      c.textContent = n + ' / 300';
+      c.className = 'char-counter' + (n >= 270 ? ' warn' : '');
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!this.checkValidity()) { this.reportValidity(); return; }
+      const btn = document.getElementById('submitBtn');
+      btn.classList.add('loading');
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        btn.querySelector('.btn-text').textContent = '✓ Trimis cu succes!';
+        btn.style.background = '#38a169';
+        btn.style.color = 'white';
+      }, 1800);
+    });
+
+    /* Backup metadata */
+    const BACKUP_KEY = 'sls_page_backup';
+    try {
+      localStorage.setItem(BACKUP_KEY, JSON.stringify({
+        timestamp: new Date().toISOString(),
+        url: location.href, title: document.title, version: '1.0.0'
+      }));
+    } catch(e) {}
+
+    window.exportBackup = function(target = 'local') {
+      const payload = { timestamp: new Date().toISOString(), source: target, html: document.documentElement.outerHTML.length + ' chars' };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = 'backup_' + target + '_' + Date.now() + '.json'; a.click();
+    };
+
+    /* Cloud availability check */
+    const CLOUD_ENDPOINTS = [
+      { name: 'AWS S3', url: 'https://s3.amazonaws.com' },
+      { name: 'Google Cloud', url: 'https://storage.googleapis.com' },
+      { name: 'Azure Blob', url: 'https://blob.core.windows.net' }
+    ];
+    async function checkCloudAvailability() {
+      const results = await Promise.allSettled(
+        CLOUD_ENDPOINTS.map(ep =>
+          fetch(ep.url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store' })
+            .then(() => ({ name: ep.name, status: 'reachable' }))
+            .catch(() => ({ name: ep.name, status: 'unreachable' }))
+        )
+      );
+      results.forEach(r => { const v = r.value || { name: '?', status: 'error' }; console.log('[Cloud] ' + v.name + ': ' + v.status); });
+    }
+    if ('requestIdleCallback' in window) { requestIdleCallback(checkCloudAvailability); }
+    else { setTimeout(checkCloudAvailability, 2000); }
+  </script>
+
+  <!-- Neural Access Form Script -->
+  <script>
+  (function() {
+    const list = document.getElementById('js-service-list');
+
+    /* Services: adaugă tag-uri */
+    document.querySelectorAll('.services__btn[data-service]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.service;
+        if ([...list.children].some(c => c.dataset.name === name)) return;
+        const tag = document.createElement('span');
+        tag.className = 'services__tag';
+        tag.dataset.name = name;
+        tag.textContent = name;
+        tag.addEventListener('click', () => tag.remove());
+        list.appendChild(tag);
+      });
+    });
+
+    document.querySelector('.services__btn[data-clear]')
+      .addEventListener('click', () => list.innerHTML = '');
+       /*<!-- Final Quality Audit: Mobile Performance Optimized by Nume Prenume -->
+
+    /* Debug mode — folosim document.body direct (nu mai e nevoie de id="js-body") */
+    document.getElementById('js-debug-toggle')
+      .addEventListener('click', () => document.body.classList.toggle('debug'));
+  })();
+  </script>
+
+</body>
+</html>

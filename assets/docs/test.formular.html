@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formular Înregistrare</title>
+
+  <style>
+    :root {
+      --theme-color: #dfefff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .formular {
+      background: var(--theme-color);
+      padding: 25px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .camp {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #999;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #333;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <form class="formular">
+    <h2>Formular Înregistrare</h2>
+
+    <!-- Username -->
+    <div class="camp">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        required
+        minlength="5"
+        pattern="[a-z0-9]{5,}"
+        title="Minim 5 caractere, doar litere mici și cifre"
+      />
+    </div>
+
+    <!-- Parolă -->
+    <div class="camp">
+      <label for="parola">Parolă</label>
+      <input
+        type="password"
+        id="parola"
+        name="parola"
+        required
+        pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
+        title="Minim 8 caractere, o literă mare, un număr și un simbol"
+      />
+    </div>
+
+    <!-- Data rezervării -->
+    <div class="camp">
+      <label for="data">Data Rezervării</label>
+      <input
+        type="date"
+        id="data"
+        name="data"
+        required
+        min="2026-05-01"
+        max="2026-05-31"
+      />
+    </div>
+
+    <!-- Culoare temă -->
+    <div class="camp">
+      <label for="culoare">Culoare Temă</label>
+      <input
+        type="color"
+        id="culoare"
+        value="#dfefff"
+      />
+    </div>
+
+    <button type="submit">Înregistrare</button>
+  </form>
+
+  <script>
+    const colorPicker = document.getElementById("culoare");
+
+    colorPicker.addEventListener("input", function () {
+      document.documentElement.style.setProperty(
+        "--theme-color",
+        this.value
+      );
+    });
+  </script>
+
+</body>
+</html>

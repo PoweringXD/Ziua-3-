@@ -1,0 +1,193 @@
+/* ============================================================
+   _variables.css | RC 251 — Cealic Damian
+   Ierarhie: Primitive → Semantic → Component
+   ============================================================ */
+
+:root {
+
+  /* ── LAYER 1: PRIMITIVE TOKENS ──────────────────────────────
+     Valori brute. Nu se folosesc direct în componente.
+  ──────────────────────────────────────────────────────────── */
+
+  --primitive-black-900:    #080808;
+  --primitive-black-800:    #111111;
+  --primitive-white:        #ffffff;
+  --primitive-white-03:     rgba(255,255,255,0.03);
+  --primitive-white-10:     rgba(255,255,255,0.10);
+  --primitive-white-16:     rgba(255,255,255,0.16);
+  --primitive-white-20:     rgba(255,255,255,0.20);
+  --primitive-white-35:     rgba(255,255,255,0.35);
+
+  --primitive-cyan-100:     #00f2ff;
+  --primitive-cyan-08:      rgba(0,242,255,0.08);
+  --primitive-cyan-10:      rgba(0,242,255,0.10);
+  --primitive-cyan-15:      rgba(0,242,255,0.15);
+  --primitive-cyan-40:      rgba(0,242,255,0.40);
+
+  --primitive-green-100:    #00ff88;
+  --primitive-green-08:     rgba(0,255,136,0.08);
+  --primitive-green-10:     rgba(0,255,136,0.10);
+  --primitive-green-40:     rgba(0,255,136,0.40);
+
+  --primitive-red-100:      #ff003c;
+  --primitive-red-08:       rgba(255,0,60,0.08);
+  --primitive-red-40:       rgba(255,0,60,0.40);
+  --primitive-red-55:       rgba(255,0,60,0.55);
+
+  --primitive-amber-100:    #ffaa00;
+  --primitive-amber-08:     rgba(255,170,0,0.08);
+  --primitive-amber-15:     rgba(255,170,0,0.15);
+  --primitive-amber-40:     rgba(255,170,0,0.40);
+  --primitive-amber-60:     rgba(255,170,0,0.60);
+
+  --primitive-gray-500:     #888888;
+
+  --primitive-space-4:   4px;
+  --primitive-space-5:   5px;
+  --primitive-space-6:   6px;
+  --primitive-space-8:   8px;
+  --primitive-space-10:  10px;
+  --primitive-space-12:  12px;
+  --primitive-space-14:  14px;
+  --primitive-space-16:  16px;
+  --primitive-space-20:  20px;
+  --primitive-space-28:  28px;
+  --primitive-space-36:  36px;
+  --primitive-space-40:  40px;
+  --primitive-space-48:  48px;
+
+  --primitive-radius-4:  4px;
+  --primitive-radius-8:  8px;
+  --primitive-radius-16: 16px;
+
+  --primitive-duration-200: 0.2s;
+  --primitive-duration-300: 0.3s;
+  --primitive-easing-out:   ease;
+
+  --primitive-font-mono:    'Share Tech Mono', monospace;
+  --primitive-font-display: 'Rajdhani', sans-serif;
+
+  --primitive-fs-10: 0.55rem;
+  --primitive-fs-11: 0.60rem;
+  --primitive-fs-13: 0.72rem;
+  --primitive-fs-14: 0.80rem;
+  --primitive-fs-16: 0.90rem;
+  --primitive-fs-26: 1.60rem;
+
+  --primitive-ls-1: 0.05em;
+  --primitive-ls-2: 0.10em;
+  --primitive-ls-3: 0.15em;
+  --primitive-ls-4: 0.20em;
+
+  --primitive-grid-size: 40px;
+
+
+  /* ── LAYER 2: SEMANTIC TOKENS ───────────────────────────────
+     Primitive cu intenție. Descriu CE sunt, nu CUM arată.
+  ──────────────────────────────────────────────────────────── */
+
+  --color-bg:             var(--primitive-black-900);
+  --color-surface:        var(--primitive-white-03);
+
+  --color-border-default: var(--primitive-white-10);
+  --color-border-subtle:  var(--primitive-white-16);
+  --color-border-focus:   var(--primitive-cyan-100);
+  --color-border-success: var(--primitive-green-40);
+  --color-border-error:   var(--primitive-red-40);
+  --color-border-warning: var(--primitive-amber-40);
+
+  --color-text-primary:   var(--primitive-white);
+  --color-text-muted:     var(--primitive-gray-500);
+  --color-text-disabled:  var(--primitive-white-20);
+  --color-text-accent:    var(--primitive-cyan-40);
+
+  --color-focus:          var(--primitive-cyan-100);
+  --color-success:        var(--primitive-green-100);
+  --color-error:          var(--primitive-red-100);
+  --color-warning:        var(--primitive-amber-100);
+
+  --color-ring-focus:     var(--primitive-cyan-10);
+  --color-ring-success:   var(--primitive-green-08);
+  --color-ring-error:     var(--primitive-red-08);
+
+  --shadow-focus:         0 0 8px var(--color-focus);
+  --shadow-success:       0 0 8px var(--color-success);
+  --shadow-error:         0 0 8px var(--color-error);
+  --shadow-warning:       0 0 8px var(--color-warning);
+
+  --font-body:            var(--primitive-font-mono);
+  --font-heading:         var(--primitive-font-display);
+
+  --text-xs:    var(--primitive-fs-10);
+  --text-sm:    var(--primitive-fs-11);
+  --text-base:  var(--primitive-fs-13);
+  --text-input: var(--primitive-fs-14);
+  --text-btn:   var(--primitive-fs-16);
+  --text-h1:    var(--primitive-fs-26);
+
+  --tracking-tight:  var(--primitive-ls-1);
+  --tracking-normal: var(--primitive-ls-2);
+  --tracking-wide:   var(--primitive-ls-3);
+  --tracking-wider:  var(--primitive-ls-4);
+
+  --space-1:  var(--primitive-space-4);
+  --space-2:  var(--primitive-space-5);
+  --space-3:  var(--primitive-space-6);
+  --space-4:  var(--primitive-space-8);
+  --space-5:  var(--primitive-space-12);
+  --space-6:  var(--primitive-space-14);
+  --space-7:  var(--primitive-space-20);
+  --space-8:  var(--primitive-space-28);
+  --space-9:  var(--primitive-space-36);
+  --space-10: var(--primitive-space-48);
+
+  --radius-xs: var(--primitive-radius-4);
+  --radius-sm: var(--primitive-radius-8);
+  --radius-md: var(--primitive-radius-16);
+
+  --transition-fast: var(--primitive-duration-200) var(--primitive-easing-out);
+  --transition-med:  var(--primitive-duration-300) var(--primitive-easing-out);
+
+  --grid-line: rgba(0,242,255,0.025);
+
+
+  /* ── LAYER 3: COMPONENT TOKENS ──────────────────────────────
+     Semantic specializat per-componentă. Modifici o componentă
+     fără să afectezi restul sistemului.
+  ──────────────────────────────────────────────────────────── */
+
+  /* card */
+  --card-bg:         rgba(255,255,255,0.02);
+  --card-border:     var(--color-border-default);
+  --card-border-top: var(--color-border-subtle);
+  --card-shadow:     0 30px 80px rgba(0,0,0,0.60), 0 0 0 1px rgba(0,242,255,0.04);
+  --card-radius:     var(--radius-md);
+  --card-padding-y:  var(--space-10);
+  --card-padding-x:  var(--primitive-space-40);
+  --card-width:      440px;
+
+  /* field */
+  --field-label-color:        var(--color-text-muted);
+  --field-label-floated-color: var(--color-focus);
+  --field-hint-height:        1.2em;
+
+  /* btn */
+  --btn-disabled-bg:    var(--primitive-white-03);
+  --btn-disabled-text:  var(--color-text-disabled);
+  --btn-active-bg:      linear-gradient(135deg, var(--primitive-cyan-15), var(--primitive-green-10));
+  --btn-active-border:  var(--color-border-focus);
+  --btn-terms-bg:       linear-gradient(135deg, var(--primitive-amber-15), var(--primitive-amber-08));
+  --btn-terms-border:   var(--color-border-warning);
+
+  /* services */
+  --services-empty-border:  var(--color-border-default);
+  --services-filled-border: var(--primitive-cyan-15);
+
+  /* debug GPU layers */
+  --debug-bg:    rgba(255,0,200,0.7);
+  --debug-card:  rgba(0,242,255,0.8);
+  --debug-label: rgba(0,255,136,0.7);
+  --debug-dot:   rgba(255,170,0,0.8);
+  --debug-btn:   rgba(255,60,60,0.8);
+  --debug-tag:   rgba(100,200,255,0.7);
+}

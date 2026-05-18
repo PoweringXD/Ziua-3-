@@ -1,0 +1,75 @@
+/* ============================================================
+   _critical.css | RC 251 — Cealic Damian
+   CRITICAL CSS — Above the Fold
+   Tot ce vede utilizatorul la prima randare, fără scroll.
+   Prioritate maximă: încărcat primul, inline dacă e posibil.
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  background: var(--color-bg);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+}
+
+/* GPU layer — will-change previne repaint la scroll */
+.page__grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--primitive-grid-size) var(--primitive-grid-size);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* card — specificitate (0,1,0) — o singură clasă */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-top-color: var(--card-border-top);
+  backdrop-filter: blur(20px);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding-y) var(--card-padding-x);
+  width: var(--card-width);
+  box-shadow: var(--card-shadow);
+  /* Focus-Within UX: luminozitate prin filter, nu border animate */
+  filter: brightness(1);
+  transition: filter var(--transition-med);
+}
+
+/* Focus-Within UX — max 2 niveluri: .card:focus-within */
+.card:focus-within {
+  filter: brightness(1.12);
+}
+
+.card__header {
+  margin-bottom: var(--space-9);
+  text-align: center;
+}
+
+.card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-h1);
+  font-weight: 700;
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-text-primary);
+  text-shadow: 0 0 20px rgba(0,242,255,0.30);
+}
+
+.card__subtitle {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-accent);
+  margin-top: var(--space-3);
+  text-transform: uppercase;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Intelligent CSS Form</title>
+
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body class="page page--debug">
+
+  <main class="layout">
+
+    <section class="form-card">
+
+      <header class="form-card__header">
+        <h1 class="form-card__title">
+          Intelligent Form Engine
+        </h1>
+
+        <p class="form-card__subtitle">
+          CSS-only logic orchestration.
+        </p>
+      </header>
+
+      <form class="form" novalidate>
+
+        <!-- NAME -->
+
+        <div class="form__field">
+
+          <input
+            type="text"
+            id="name"
+            class="form__input"
+            placeholder=" "
+            required
+            minlength="3"
+          />
+
+          <label for="name" class="form__label">
+            Full Name
+          </label>
+
+          <span class="form__indicator"></span>
+
+        </div>
+
+        <!-- EMAIL -->
+
+        <div class="form__field">
+
+          <input
+            type="email"
+            id="email"
+            class="form__input"
+            placeholder=" "
+            required
+          />
+
+          <label for="email" class="form__label">
+</html>
